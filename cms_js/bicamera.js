@@ -64,7 +64,7 @@ function getProductData() {
       existID.push(prodID);
 
       spec.push({
-        prodID,
+        prodID: prodID,
         prodSubName: imgTemp.alt.trim(),
         prodSubImg: imgTemp.src.trim()
       });
@@ -88,8 +88,8 @@ function getProductData() {
     price2: prodPrice2,
     description: (prodDescription1) ? prodDescription1 : prodDescription2,
     descriptionWithoutHtml: (prodDescriptionWithoutHtml1) ? prodDescriptionWithoutHtml1 : prodDescriptionWithoutHtml2,
-    spec,
-    maxNum
+    spec: spec,
+    maxNum: maxNum
   }
 }
 
