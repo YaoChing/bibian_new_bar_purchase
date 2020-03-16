@@ -1,6 +1,5 @@
 + 測試環境建置
 <br>
-  + 設定
 
   |網站用途|網址|
   |---|---|
@@ -46,17 +45,20 @@
   <br>
 
 + 需要的API
-<br>
+
   + 建立cartID
-    <br>
+
     ```
     GET /get_init_cart
     ```
 
     ##### Parameters
 
-    |Name|Type|Required|Description|
-    |---|---|---|---|
+    ```
+    {
+      serviceName: "bicamera.com/www"
+    }
+    ```
 
     ##### Response Result
 
@@ -66,31 +68,32 @@
       message: ""
       data: {
         cartID: 12345
-      }
+      },
+      error: 0
     }
     ```
-    <br>
 
   + 加入商品到購物車
-    <br>
+
     ```
     GET /update_cart
     ```
 
     ##### Parameters
-
-    |Name|Type|Required|Description|
-    |---|:---|:---:|---|
-    |productID|string|V|商品ID|
-    |productName|string|V|商品名稱|
-    |productPrice|string|V|商品價格|
-    |productCount|number|V|購買數量|
-    |productSummary|string|V|商品說明|
-    |productImage|string|V|商品圖片|
-    |productMemo|string|V|商品備註|
-
+    
     ```
-
+    {
+      cartID: 12345
+      item: {
+        productID: 12345,
+        productName: "EH-CNA9B-VP ヘアードライヤー ナノケア ビビッドピンク [国内専用]",
+        productPrice: "18,740円",
+        productCount: 1,
+        productSummary: "<b>「ナノイー」＆ダブルミネラル*で、キューティクルを密着させ、指通りのよいまとまりのある髪へ。</b><br><br>摩擦ダメージや紫外線に強い髪へ。地肌から毛先、肌までケアできる５つのモードを搭載。<br>*ダブルミネラルとは、２つの亜鉛電極から発生されるミネラルマイナスイオンです。",
+        productImage: "https://image.biccamera.com/img/00000006980965_A01.jpg?sr.dw=320&sr.jqh=60&sr.dh=320&sr.mat=1",
+        productMemo: ""
+      }
+    }
     ```
 
     ##### Response Result
@@ -100,23 +103,28 @@
       status: true,
       message: ""
       data: {
-        count: 2
-      }
+        count: 1
+      },
+      error: 0
     }
     ```
-    <br>
 
   + 刪除商品從購物車
-    <br>
+
     ```
     GET /update_cart
     ```
 
     ##### Parameters
 
-    |Name|Type|Required|Description|
-    |---|:---|:---:|---|
-    |productID|string|V|商品ID|
+    ```
+    {
+      cartID: 12345
+      item: {
+        productID: 12345
+      }
+    }
+    ```
 
     ##### Response Result
 
@@ -125,23 +133,25 @@
       status: true,
       message: ""
       data: {
-        count: 2
-      }
+        count: 0
+      },
+      error: 0
     }
     ```
-    <br>
 
   + 取得購物車商品項總數
-    <br>
+  
     ```
     GET /get_items_count
     ```
 
     ##### Parameters
 
-    |Name|Type|Required|Description|
-    |---|:---|:---:|---|
-    |productID|string|V|商品ID|
+    ```
+    {
+      cartID: 12345
+    }
+    ```
 
     ##### Response Result
 
@@ -150,23 +160,25 @@
       status: true,
       message: ""
       data: {
-        count: 2
-      }
+        count: 0
+      },
+      error: 0
     }
     ```
-    <br>
 
-  + 取得購物車結帳狀態
-    <br>
+  + 取得購物車狀態
+  
     ```
     GET /get_cart_status
     ```
 
     ##### Parameters
 
-    |Name|Type|Required|Description|
-    |---|:---|:---:|---|
-    |productID|string|V|商品ID|
+    ```
+    {
+      cartID: 12345
+    }
+    ```
 
     ##### Response Result
 
@@ -175,8 +187,9 @@
       status: true,
       message: ""
       data: {
-        isCheckout: 0
-      }
+        is_checkout: true,
+        is_expire: false
+      },
+      error: 0
     }
     ```
-    <br>
