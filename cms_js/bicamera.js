@@ -30,7 +30,13 @@ function getProductData() {
   var prodName = document.querySelector("#PROD-CURRENT-NAME").innerText.trim();
   var prodPrice1 = document.querySelectorAll("tr.bcs_variationOff")[0].querySelector(".bcs_proper");
 
-  prodPrice1 = (prodPrice1) ? prodPrice1.innerText.replace(/\n/g, ' ').trim() : prodPrice1;
+  if(prodPrice1) {
+    prodPrice1 = prodPrice1.innerText.trim().split(/\s/)[0];
+    
+    var tempIndex = prodPrice1.indexOf("円");
+
+    prodPrice1 = prodPrice1.slice(0,tempIndex) + "円";
+  }
 
   var prodPrice2 = document.querySelectorAll("tr.bcs_variationOff")[1].querySelector(".bcs_price strong").innerText.trim();
   var prodDescription1 = document.querySelector("#bcs_detailBase").innerHTML.trim();
