@@ -51,7 +51,7 @@
 	說明：當點選加入購物車時使用
 	
 	```
-	GET /update_cart
+	POST /update_cart
 	```
 
 	##### Parameters
@@ -90,7 +90,7 @@
 	說明：當點選刪除購物車時使用
 	
 	```
-	GET /delete_cart
+	POST /delete_cart
 	```
 	
 	##### Parameters
@@ -123,7 +123,7 @@
 	說明：當點選bar上的購物車圖示時使用
 	  
 	```
-	GET /get_items_list
+	POST /get_items_list
 	```
 	
 	##### Response Result
@@ -157,7 +157,7 @@
 	說明：當頁面進入時使用
   
 	```
-	GET /get_cart_status
+	POST /get_cart_status
 	```
 	
 	##### Response Result
