@@ -14,9 +14,6 @@ var itemData = {
   image: "",
   num: 0
 }
-var cartID = "";
-var cmsDomain = ".testcms.co.jp";
-var expire_days = 7;
 
 function getProdID(url) {
   var prodIDRe = /https:\/\/www\.biccamera\.com\/bc\/item\/([0-9]+)\//g;
@@ -109,52 +106,6 @@ function fetchData(url, data, cb) {
   }
   xhr.send(formData);
 }
-
-
-
-function setCartCookie() {
-  var d = new Date();
-
-  d.setTime(d.getTime() + (expire_days * 24 * 60 * 60 * 1000));
-
-  var expires = "expires=" + d.toGMTString();
-
-  document.cookie = "cartID=" + cartID + "; " + expires + "; domain=" + cmsDomain + "; path=/";
-}
-
-function deleteCartCookie() {
-  document.cookie = "cartID=; expires = Thu, 01 Jan 1970 00:00:00 GMT; domain=" + cmsDomain + "; path=/";
-}
-
-function initCart(cb) {
-  fetchData("http://nbwww.bibian.co.jp/bicamera/get_token_id", {}, cb);
-}
-
-function getCartID() {
-  if(document.cookie) {
-    cartID = document.cookie.replace(/(?:(?:^|.*;\s*)cartID\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-
-    if(!cartID) {
-      initCart(function(result) {
-        cartID = result;
-        setCartCookie();
-      })
-    }
-  } else {
-    initCart(function(result) {
-      cartID = result;
-      setCartCookie();
-    })
-  }
-}
-
-function getResponseResult(result) {
-  console.log(result);
-}
-
-// getCartID();
-// console.log(cartID);
-// deleteCartCookie();
 
 getProductData();
 console.log(productData);
