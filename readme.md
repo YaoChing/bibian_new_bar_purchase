@@ -58,6 +58,7 @@
 	    
 	```
 	{
+		status: update_cart
 		item: {
 			productID: 12345,
 			productName: "EH-CNA9B-VP ヘアードライヤー ナノケア ビビッドピンク [国内専用]",
@@ -97,6 +98,7 @@
 	
 	```
 	{
+		status: delete_cart
 		item: {
 			productID: 12345
 		}
@@ -124,6 +126,14 @@
 	  
 	```
 	POST /get_items_list
+	```
+	
+	##### Parameters
+	
+	```
+	{
+		status: get_items_list
+	}
 	```
 	
 	##### Response Result
@@ -158,6 +168,14 @@
   
 	```
 	POST /get_cart_status
+	```
+	
+	##### Parameters
+	
+	```
+	{
+		status: get_cart_status
+	}
 	```
 	
 	##### Response Result
