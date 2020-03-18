@@ -56,7 +56,7 @@
 
     ```
     {
-      serviceName: "bicamera.com/www"
+      serviceName: "bicamera.com/www" // 配合廠商在我站登記的service代碼
     }
     ```
 
@@ -103,7 +103,7 @@
       status: true,
       message: ""
       data: {
-        count: 1
+        count: 1 // 購物車內商品項總數
       },
       error: 0
     }
@@ -133,7 +133,7 @@
       status: true,
       message: ""
       data: {
-        count: 0
+        count: 0 // 購物車內商品項總數
       },
       error: 0
     }
@@ -160,7 +160,7 @@
       status: true,
       message: ""
       data: {
-        count: 0
+        count: 0 // 購物車內商品項總數
       },
       error: 0
     }
@@ -187,8 +187,8 @@
       status: true,
       message: ""
       data: {
-        is_checkout: true,
-        is_expire: false
+        is_checkout: true, // 是否已經結帳
+        is_expire: false // 是否已經過期
       },
       error: 0
     }
