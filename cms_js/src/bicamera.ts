@@ -1,15 +1,7 @@
-import Cart from "./views/Cart";
 import Render from "./views/Render";
-import Product from "./views/Product";
 
 console.log("========== call render");
 Render.testCall();
-
-console.log("========== Cart render");
-Cart.testCall();
-
-console.log("========== Product render");
-Product.testCall();
 
 Render.initBarContainer();
 

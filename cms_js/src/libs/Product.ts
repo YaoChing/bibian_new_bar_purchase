@@ -1,4 +1,5 @@
 export interface ProductProps {
+  id: string,
   name: string,
   price: string,
   discount: string,
@@ -12,9 +13,20 @@ export interface ProductProps {
   maxNum: number
 }
 
+export interface ItemProps {
+  id: string,
+  name: string,
+  price: string,
+  image: string,
+  description: string,
+  weight: string,
+  num: string
+}
+
 class Product{
 
   public productData: ProductProps = {
+    id: "",
     name: "",
     price: "",
     discount: "",
@@ -28,13 +40,14 @@ class Product{
     maxNum: 0
   }
 
-  private _itemData = {
+  private _itemData: ItemProps = {
     id: "",
     name: "",
-    price: 0,
+    price: "",
     image: "",
     description: "",
-    num: 0
+    weight: "",
+    num: ""
   }
 
   private _prodIDRe = /https\:\/\/www\.biccamera\.com\/bc\/item\/([0-9]+)\//g;
@@ -48,6 +61,10 @@ class Product{
     let prodID = (prodIDArray) ? prodIDArray[1] : "";
   
     return prodID;
+  }
+
+  getProductID() {
+    this.productData["id"] = this._getProdID(location.href);
   }
 
   getProductName() {
@@ -182,6 +199,7 @@ class Product{
   }
 
   getProductData() {
+    this.getProductID();
     this.getProductName();
     this.getProductPriceCost();
     this.getProductPriceDiscount();
@@ -195,6 +213,47 @@ class Product{
     this.getProductWeight();
 
     return this.productData;
+  }
+
+  getItemData() {
+    let data = this.productData;
+    let selectSpecID = (document.querySelector(".optionbox input[name=prodSpec]:checked") as HTMLInputElement).value;
+    let i = 0;
+
+    this._itemData = {
+      id: selectSpecID,
+      name: "",
+      price: data["discount"],
+      image: "",
+      description: (data["descriptionWithoutHtml1"]) ? data["descriptionWithoutHtml1"] : data["descriptionWithoutHtml2"],
+      weight: data["weight"],
+      num: (document.querySelector(".introgroup #count") as HTMLSelectElement).value
+    }
+
+    while(i < data["spec"].length) {
+      let value = data["spec"][i];
+
+      if(value["prodID"] === selectSpecID) {
+        this._itemData = {
+          ...this._itemData,
+          ["name"]: value["prodSubName"],
+          ["image"]: value["prodSubImg"],
+        }
+      }
+
+      i += 1;
+    }
+
+    return this._itemData;
+  }
+
+  regenAndSendItemData() {
+    // 取得購物物品資訊
+    let itemData = this.getItemData();
+    // 回傳購物資訊到service
+    console.log(itemData);
+    // 顯示下一cut
+    window.location.href ='#addcart';
   }
 
   testCall() {

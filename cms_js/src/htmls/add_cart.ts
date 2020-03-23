@@ -1,4 +1,6 @@
 export default () => {
+  console.log("add cart html in");
+
   return `
     <div id="addcart" class="modal-window">
       <div class="modal-main">
@@ -10,8 +12,8 @@ export default () => {
           <h2 class="light">商品已加入購物車</h2>
           <form>
             <div class="p-option">
-              <div class="optionbox button">
-                <input type="button" value="確認結帳" onclick="window.location='#estimatedcost';">
+              <div class="optionbox button checkOut">
+                <input type="button" value="確認結帳">
               </div>
             </div>
           </form>

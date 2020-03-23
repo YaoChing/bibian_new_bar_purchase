@@ -1,4 +1,6 @@
 export default () => {
+  console.log("bar container html in");
+
   return `
     <div class="bibibar_c">
       <ul>
@@ -14,7 +16,7 @@ export default () => {
           </a>
         </li>
         <li>
-          <div class="shopcount"  onclick="window.location='#estimatedcost';">
+          <div class="shopcount">
             <span class="count_n">5</span>
           </div>
         </li>

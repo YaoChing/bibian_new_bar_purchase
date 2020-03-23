@@ -1,4 +1,49 @@
-export default () => {
+export interface ProductProps {
+  id: string,
+  name: string,
+  price: string,
+  discount: string,
+  image: string,
+  description1: string,
+  description2: string,
+  descriptionWithoutHtml1: string,
+  descriptionWithoutHtml2: string,
+  spec: any[],
+  weight: string,
+  maxNum: number
+}
+
+export default (props: ProductProps) => {
+  console.log("buy now html in");
+
+  let selectCountHtml = ``;
+  let i = 1;
+
+  while(i <= props.maxNum) {
+    selectCountHtml += `<option value=${i}>${i}</option>`;
+    i += 1;
+  }
+
+  let specHtml = ``;
+
+  i = 0;
+  let j = 1;
+
+  while(i <= props.spec.length) {
+    let value = props.spec[i];
+
+    if(value) {
+      specHtml += `
+        <input type="radio" name="prodSpec" id="inlineRadio${j}" value="${value.prodID}" name="option${j}" ${(value.prodID === props.id) ? 'checked' : ''}>
+        <label for="inlineRadio1">${value.prodSubName}</label>
+      `;
+
+      j += 1;
+    }
+    
+    i += 1;
+  }
+
   return `
     <div id="buynow" class="modal-window">
       <div class="modal-main">
@@ -11,25 +56,19 @@ export default () => {
           <form>
             <div class="p-intro">
               <div class="p-image">
-                <img src="https://image.biccamera.com/img/00000006355924_A01.jpg" alt="">
+                <img src="${props.image}" alt="">
               </div>
               <div class="p-text">
-                <h2>GR-Q23FGNGL冰箱LG SIGNITURE銀色[4門/左右對開門型/676L]《基本裝機費安排》</h2>
+                <h2>${props.name}</h2>
                 <p>
-                  家電現在對藝術作品進化了。
-                  LG SIGNATURE本來應該有家電的到極限追求那個本質和價值，不要的要素切掉，真地對家電需要的性能和使用方便，
-                  是把設計美以最尖端的技術換成形狀的LG的高級名牌。
-                  是翻新正因為是綜合家電廠商才完成的傳統的家電的想法的那樣的特別的產品。
+                  ${(props.description1) ? props.description1 : props.description2}
                 </p>
                 <div class="introgroup">
                   <select id="count" name="count">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    ${selectCountHtml}
                   </select>
                   <div class="price">
-                    JPY <span class="redcolor">15,290</span>
+                    JPY <span class="redcolor">${props.discount}</span>
                   </div>
                 </div>
               </div>
@@ -38,26 +77,14 @@ export default () => {
             <div class="p-option">
               <div class="optionbox">
                 <label for="option1" name="oplabel">選擇一</label>
-                <input type="radio" id="inlineRadio1" value="o1" name="option1">
-                <label for="inlineRadio1">這是選擇一</label>
-                <input type="radio" id="inlineRadio2" value="o2" name="option1">
-                <label for="inlineRadio2">這是選擇二</label>
-              </div>
-              <div class="optionbox">
-                <label for="option2" name="oplabel">選擇二</label>
-                <select id="option2" name="count">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
+                ${specHtml}
               </div>
               <div class="optionbox">
                 <label for="note" name="oplabel">備註</label>
                 <input type="text" id="note" placeholder="請註明商品尺碼、顏色、種類等資訊">
               </div>
-              <div class="optionbox button">
-                <input type="button" value="加入購物車" onclick="window.location='#addcart';">
+              <div class="optionbox button addCart">
+                <input type="button" value="加入購物車">
               </div>
             </div>
           </form>
