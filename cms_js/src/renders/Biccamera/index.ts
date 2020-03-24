@@ -14,7 +14,7 @@ class Render{
 
   private _cssStype = itemStyle();
 
-  private _insertCss(code: any) {
+  private _appendCss(code: any) {
     let style: any;
 
     style = document.createElement('style');
@@ -30,27 +30,33 @@ class Render{
   }
 
   initCss() {
-    this._insertCss(this._cssStype);
+    this._appendCss(this._cssStype);
   }
 
   initBarContainer() {
+    // append css
     this.initCss();
-
+    // 處理container ===== start
     let barContainerHtml = '<div class="bibibar"></div>';
 
     (document.body as HTMLBodyElement).innerHTML += barContainerHtml;
-
+    // 處理container ===== end
+    // 處理商品資訊並append到html中
     this.initCartBar();
   }
 
   initCartBar() {
+    // 取得商品資訊
     let product = _product.getProductData();
+    // 處理html ===== start
     let barBannerHtml = bar_container();
 
     barBannerHtml += buy_now(product);
     barBannerHtml += add_cart();
     barBannerHtml += estimatedcost();
+    // 處理html ===== end
 
+    // append html
     (document.querySelector(".bibibar") as HTMLElement).innerHTML += barBannerHtml; 
     // click greenbtn had been used in bar_container html
     (document.querySelector(".bibibar_c a.greenbtn") as HTMLElement).onclick = () => {
@@ -82,10 +88,6 @@ class Render{
 
       (document.querySelector(".bibibar_c .shopcount .count_n") as HTMLElement).innerText = ((typeof num === 'number') ? num.toString() : num);
     })
-  }
-
-  testCall() {
-    console.log("Render init");
   }
 }
 

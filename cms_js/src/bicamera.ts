@@ -1,13 +1,6 @@
-import BiccameraRender from "./renders/Biccamera";
+import Biccamera from "./renders/Biccamera";
 
-console.log("========== call Biccamera");
-BiccameraRender.testCall();
-
-BiccameraRender.initBarContainer();
-
-// let data = Product.getProductData();
-
-// console.log(data);
+Biccamera.initBarContainer();
 
 // var s = document.createElement("script");
 // s.type = "text/javascript";
