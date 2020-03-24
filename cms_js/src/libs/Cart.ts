@@ -24,7 +24,7 @@ export interface CartListProps {
     internalFeeForCurrency: string,
     airFee: string
   },
-  items: {
+  carts: {
     id: string,
     name: string,
     discription: string
@@ -45,7 +45,7 @@ class Cart{
       item: productData
     }
     
-    fetchData("", data, cb);
+    // fetchData("", data, cb);
   }
   
   deleteCart(id: string, cb: (result: any) => void) {
@@ -66,7 +66,7 @@ class Cart{
       status: "get_items_list"
     }
     
-    fetchData("", data, cb);
+    // fetchData("", data, cb);
   }
   
   getCartStatus(cb: (result: any) => void) {
@@ -74,7 +74,17 @@ class Cart{
       status: "get_cart_status"
     }
     
-    fetchData("", data, cb);
+    // fetchData("", data, cb);
+
+    cb({
+      status: true,
+      message: "",
+      data: {
+        is_checkout: false,
+        count: 10
+      },
+      error: 0
+    })
   }
   
   cb(result: any) {}
@@ -84,7 +94,7 @@ class Cart{
     let html = ``;
 
     html += total_amount(temp.amount);
-    html += total_items(temp.items);
+    html += total_items(temp.carts);
 
     (document.querySelector("div#estimatedcost div.modal-content") as HTMLElement).innerHTML = html; 
   }
@@ -100,7 +110,7 @@ class Cart{
         internalFeeForCurrency: "385",
         airFee: "100"
       },
-      items: [{
+      carts: [{
         id: "12345",
         name: "GR-Q23FGNGL冰箱LG SIGNITURE銀色[4門/左右對開門型/676L]《基本裝機費安排》",
         discription: "家電現在對藝術作品進化了。LG SIGNATURE本來應該有家電的到極限追求那個本質和價值，不要的要素切掉，真地對家電需要的性能和使用方便，是把設計美以最尖端的技術換成形狀的LG的高級名牌。是翻新正因為是綜合家電廠商才完成的傳統的家電的想法的那樣的特別的產品。",
@@ -125,7 +135,7 @@ class Cart{
     // btn had been used in estimatedcose html
     (document.querySelector(".closeCart input") as HTMLElement).onclick = () => {
       // 導向到bibian購買頁面
-      goToBibianCart();
+      window.location.href = 'https://www.bibian.co.jp/';
     };
     // 顯示下一cut
     window.location.href ='#estimatedcost';
@@ -153,7 +163,7 @@ let cart = new Cart();
         internalFeeForCurrency: "305",
         airFee: "100"
       },
-      items: [{
+      carts: [{
         id: "23456",
         name: "GR-Q23FGNGL冰箱LG SIGNITURE銀色[4門/左右對開門型/676L]《基本裝機費安排》",
         discription: "家電現在對藝術作品進化了。LG SIGNATURE本來應該有家電的到極限追求那個本質和價值，不要的要素切掉，真地對家電需要的性能和使用方便，是把設計美以最尖端的技術換成形狀的LG的高級名牌。是翻新正因為是綜合家電廠商才完成的傳統的家電的想法的那樣的特別的產品。",

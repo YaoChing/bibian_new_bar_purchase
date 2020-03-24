@@ -69,6 +69,16 @@ class Render{
       // 取得購物車總資訊並顯示購買清單
       Cart.regenAndShowData();
     };
+    // 取得購物車狀態
+    Cart.getCartStatus((result) => {
+      let num = 0;
+
+      if(result["status"] && !result["data"]["is_checkout"]) {
+        num = result["data"]["count"];
+      }
+
+      (document.querySelector(".bibibar_c .shopcount .count_n") as HTMLElement).innerText = ((typeof num === 'number') ? num.toString() : num);
+    })
   }
 
   testCall() {

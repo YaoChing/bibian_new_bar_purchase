@@ -43,152 +43,163 @@
   流程前兩步驟可以套過JS or iframe處理，但是不是要用iframe處理，需測試客戶端對iframe的安全性狀況來判定
   
 ---  
-  
+
 + 需要的API
 
-	#### 加入商品到購物車
-	
-	說明：當點選加入購物車時使用
-	
-	```
-	POST /update_cart
-	```
+    API URL 需請後端工程師協助提供，目前暫定為 /go_to_api.php
 
-	##### Parameters
-	    
-	```
-	{
-		status: update_cart
-		item: {
-			productID: 12345,
-			productName: "EH-CNA9B-VP ヘアードライヤー ナノケア ビビッドピンク [国内専用]",
-			productPrice: "18,740円",
-			productCount: 1,
-			productSummary: "<b>「ナノイー」＆ダブルミネラル*で、キューティクルを密着させ、指通りのよいまとまりのある髪へ。</b><br><br>摩擦ダメージや紫外線に強い髪へ。地肌から毛先、肌までケアできる５つのモードを搭載。<br>*ダブルミネラルとは、２つの亜鉛電極から発生されるミネラルマイナスイオンです。",
-			productImage: "https://image.biccamera.com/img/00000006980965_A01.jpg?sr.dw=320&sr.jqh=60&sr.dh=320&sr.mat=1",
-			productMemo: ""
-		}
-	}
-	```
-	
-	##### Response Result
-	
-	```
-		{
-			status: true,
-			message: ""
-			data: {
-				count: 1 // 購物車內商品項總數
-			},
-			error: 0
-		}
-	```
-	
-	---
+    #### 加入商品到購物車
+    
+    說明：當點選加入購物車時使用
+    
+    ```
+    POST /go_to_api.php
+    ```
 
-	#### 刪除商品從購物車
-	
-	說明：當點選刪除購物車時使用
-	
-	```
-	POST /delete_cart
-	```
-	
-	##### Parameters
-	
-	```
-	{
-		status: delete_cart
-		item: {
-			productID: 12345
-		}
-	}
-	```
-	
-	##### Response Result
-	
-	```
-	{
-		status: true,
-		message: ""
-		data: {
-			count: 0 // 購物車內商品項總數
-		},
-		error: 0
-	}
-	```
-	
-	---
+    ##### Parameters
+        
+    ```
+    {
+        status: update_cart
+        item: {
+            productID: 12345,
+            productName: "EH-CNA9B-VP ヘアードライヤー ナノケア ビビッドピンク [国内専用]",
+            productPrice: "18,740円",
+            productCount: 1,
+            productSummary: "<b>「ナノイー」＆ダブルミネラル*で、キューティクルを密着させ、指通りのよいまとまりのある髪へ。</b><br><br>摩擦ダメージや紫外線に強い髪へ。地肌から毛先、肌までケアできる５つのモードを搭載。<br>*ダブルミネラルとは、２つの亜鉛電極から発生されるミネラルマイナスイオンです。",
+            productImage: "https://image.biccamera.com/img/00000006980965_A01.jpg?sr.dw=320&sr.jqh=60&sr.dh=320&sr.mat=1",
+            productMemo: ""
+        }
+    }
+    ```
+    
+    ##### Response Result
+    
+    ```
+    {
+        status: true,
+        message: ""
+        data: {
+            count: 1 // 購物車內商品項總數
+        },
+        error: 0
+    }
+    ```
+    
+    ---
 
-	#### 取得購物車商品項
-	
-	說明：當點選bar上的購物車圖示時使用
-	  
-	```
-	POST /get_items_list
-	```
-	
-	##### Parameters
-	
-	```
-	{
-		status: get_items_list
-	}
-	```
-	
-	##### Response Result
-	
-	```
-	{
-		status: true,
-		message: ""
-		data: {
-			carts: [
-				{
-					productID: 12345,
-					productName: "EH-CNA9B-VP ヘアードライヤー ナノケア ビビッドピンク [国内専用]",
-					productPrice: "18,740円",
-					productCount: 1,
-					productSummary: "<b>「ナノイー」＆ダブルミネラル*で、キューティクルを密着させ、指通りのよいまとまりのある髪へ。</b><br><br>摩擦ダメージや紫外線に強い髪へ。地肌から毛先、肌までケアできる５つのモードを搭載。<br>*ダブルミネラルとは、２つの亜鉛電極から発生されるミネラルマイナスイオンです。",
-					productImage: "https://image.biccamera.com/img/00000006980965_A01.jpg?sr.dw=320&sr.jqh=60&sr.dh=320&sr.mat=1",
-					productMemo: ""
-				},
-				.....
-			]
-		},
-		error: 0
-	}
-	```
+    #### 刪除商品從購物車
+    
+    說明：當點選刪除購物車時使用
+    
+    ```
+    POST /go_to_api.php
+    ```
+    
+    ##### Parameters
+    
+    ```
+    {
+        status: delete_cart
+        item: {
+            productID: 12345
+        }
+    }
+    ```
+    
+    ##### Response Result
+    
+    ```
+    {
+        status: true,
+        message: ""
+        data: {
+            count: 0 // 購物車內商品項總數
+        },
+        error: 0
+    }
+    ```
+    
+    ---
 
-	---
+    #### 取得購物車商品項
+    
+    說明：當點選bar上的購物車圖示時使用
+      
+    ```
+    POST /go_to_api.php
+    ```
+    
+    ##### Parameters
+    
+    ```
+    {
+        status: get_items_list
+    }
+    ```
+    
+    ##### Response Result
+    
+    ```
+    {
+        status: true,
+        message: ""
+        data: {
+            carts: [
+              {
+                  productID: 12345,
+                  productName: "EH-CNA9B-VP ヘアードライヤー ナノケア ビビッドピンク [国内専用]",
+                  productPrice: "18,740円",
+                  productCount: 1,
+                  productSummary: "<b>「ナノイー」＆ダブルミネラル*で、キューティクルを密着させ、指通りのよいまとまりのある髪へ。</b><br><br>摩擦ダメージや紫外線に強い髪へ。地肌から毛先、肌までケアできる５つのモードを搭載。<br>*ダブルミネラルとは、２つの亜鉛電極から発生されるミネラルマイナスイオンです。",
+                  productImage: "https://image.biccamera.com/img/00000006980965_A01.jpg?sr.dw=320&sr.jqh=60&sr.dh=320&sr.mat=1",
+                  productMemo: ""
+              },
+              .....
+            ],
+            amount: {
+                totalCost: "1,997,900", // 購物車總金額（TWD）
+                productCost: "4,592", // 購物車商品總金額（TWD）
+                productCostForCurrency: "14,290", // 購物車商品換算匯率總金額（JPY）
+                serviceCost: "100", // 購物車服務費金額（TWD）
+                internalFee: "108", // 購物車國內運費金額（TWD）
+                internalFeeForCurrency: "305", // 購物車國內運費換算匯率金額（JPY）
+                airFee: "100" // 空運費用金額（TWD）
+            }
+        },
+        error: 0
+    }
+    ```
 
-	#### 取得購物車狀態
-	
-	說明：當頁面進入時使用
-  
-	```
-	POST /get_cart_status
-	```
-	
-	##### Parameters
-	
-	```
-	{
-		status: get_cart_status
-	}
-	```
-	
-	##### Response Result
-	
-	```
-	{
-		status: true,
-		message: ""
-		data: {
-		is_checkout: true, // 是否已經結帳
-		count: 0 // 取得購物車商品項總數
-		},
-		error: 0
-	}
-	```  
+    ---
+
+    #### 取得購物車狀態
+    
+    說明：當頁面進入時使用
+    
+    ```
+    POST /go_to_api.php
+    ```
+    
+    ##### Parameters
+    
+    ```
+    {
+        status: get_cart_status
+    }
+    ```
+    
+    ##### Response Result
+    
+    ```
+    {
+        status: true,
+        message: ""
+        data: {
+            is_checkout: true, // 是否已經結帳
+            count: 0 // 取得購物車商品項總數
+        },
+        error: 0
+    }
+    ```  
 	  
