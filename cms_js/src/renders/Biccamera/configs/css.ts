@@ -40,7 +40,7 @@ export const itemStyle = () => {
       width: 100%;
       margin: 0px auto;
       text-align: center; 
-      z-index: 999;
+      z-index: 99999;
     }
     
     .bibibar .bibibar_c {

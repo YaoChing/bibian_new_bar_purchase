@@ -1,9 +1,9 @@
-import Render from "./views/Render";
+import BiccameraRender from "./renders/Biccamera";
 
-console.log("========== call render");
-Render.testCall();
+console.log("========== call Biccamera");
+BiccameraRender.testCall();
 
-Render.initBarContainer();
+BiccameraRender.initBarContainer();
 
 // let data = Product.getProductData();
 
