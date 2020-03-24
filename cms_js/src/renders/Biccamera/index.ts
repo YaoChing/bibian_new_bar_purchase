@@ -78,6 +78,18 @@ class Render{
       // 取得購物車總資訊並顯示購買清單
       regenAndShowData();
     };
+
+    // 點選背景要關閉購物車box
+    let modalWindow = document.querySelectorAll(".modal-window");
+    let i = 0;
+
+    while(i < modalWindow.length) {
+      (modalWindow[i] as HTMLElement).onclick = () => {
+        (document.querySelector(".modal-close") as HTMLElement).click()
+      };
+
+      i += 1;
+    }
     // 取得購物車狀態
     cart.getCartStatus((result) => {
       let num = 0;
