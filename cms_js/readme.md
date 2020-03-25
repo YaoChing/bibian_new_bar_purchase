@@ -21,11 +21,11 @@
 
         以 Biccamera 為例：
 
-        在src根目錄底下放置主要程式檔案bicamera.ts ，再從該檔案呼叫renders裡的Biccamera來做UI計算，替代相關參數後，render到html中。
+        在src根目錄底下放置主要程式檔案bicamera.ts，再從該檔案呼叫renders裡的Biccamera來做UI計算，替代相關參數後，render到html中。
 
         在renders/Biccamera中
 
-        + config資料夾主要會放共用變數設定，css設定等
+        + configs資料夾主要會放共用變數設定，css設定等
         + libs資料夾主要會放要在前端處理的邏輯程式等
         + views資料夾主要會放要render的html元件等
         + index.ts會是主要呼叫import的程式檔
@@ -65,3 +65,34 @@
 這兩者的差別在於，編碼後的不同，主要正式上線會做min化跟程式碼替代的處理
 
 主要程式都放置於公司內部gitlab主機上，path url: http://192.168.1.143/ching0072/bibian_new_bar
+
+---
+
+建置操作流程如下
+
+程式目錄路徑為 /opt/html/bibian_new_bar
+檔案建置程式路徑為 /opt/html/service_init.sh
+
+ssh登入主機後，指令輸入
+
+```bash
+sh /opt/html/service_init.sh {服務代號}
+```
+
+在/opt/html/bibian_new_bar/src跟/opt/html/bibian_new_bar/src/renders底下就會出現剛建置的代號名稱目錄及檔案，就可直些新增修改來進行程式處理。
+
+另外最重要一點，要在webpack.config.js中加入之後要genarator出來的檔案參數
+
+```javascript
+...
+module.exports = {
+  ...
+  entry: {
+    {服務代號}: './{服務代號}.ts' // 這部分記得要加，不然npm run watch/build不會出現檔案哦
+  },
+  ...
+}
+```
+
+最後cd進入程式目錄/opt/html/bibian_new_bar，輸入指令npm run watch就能進行開發。開發完畢後，指令輸入npm run build就能產生編譯js在dist中
+
