@@ -1,6 +1,7 @@
 #### 結構說明
 
-系統結構由ES5搭配typescript開發撰寫，使用webpack套件做js編譯。
+系統結構由ES5搭配typescript開發撰寫，使用webpack套件做js編譯。  
+此結構不包含任何前端framework程式碼。
 
 ---
 
@@ -21,7 +22,7 @@
 
         以 Biccamera 為例：
 
-        在src根目錄底下放置主要程式檔案bicamera.ts，再從該檔案呼叫renders裡的Biccamera來做UI計算，替代相關參數後，render到html中。
+        在src根目錄底下放置主要程式檔案bicamera.ts，再從該檔案載入renders裡的Biccamera來做UI邏輯轉換，替代相關參數後，render到html中。
 
         在renders/Biccamera中
 
@@ -64,14 +65,14 @@
 
 這兩者的差別在於，編碼後的不同，主要正式上線會做min化跟程式碼替代的處理
 
-主要程式都放置於公司內部gitlab主機上，path url: http://192.168.1.143/ching0072/bibian_new_bar
+主要程式都放置於公司內部gitlab主機上，path url: http://192.168.1.143/ching0072/bibian\_new\_bar
 
 ---
 
 建置操作流程如下
 
-程式目錄路徑為 /opt/html/bibian_new_bar
-檔案建置程式路徑為 /opt/html/service_init.sh
+程式目錄路徑為 /opt/html/bibian\_new\_bar
+檔案建置程式路徑為 /opt/html/service\_init.sh
 
 ssh登入主機後，指令輸入
 
@@ -79,7 +80,7 @@ ssh登入主機後，指令輸入
 sh /opt/html/service_init.sh {服務代號}
 ```
 
-在/opt/html/bibian_new_bar/src跟/opt/html/bibian_new_bar/src/renders底下就會出現剛建置的代號名稱目錄及檔案，就可直些新增修改來進行程式處理。
+在/opt/html/bibian\_new\_bar/src跟/opt/html/bibian\_new\_bar/src/renders底下就會出現剛建置的代號名稱目錄及檔案，就可直些新增修改來進行程式處理。
 
 另外最重要一點，要在webpack.config.js中加入之後要genarator出來的檔案參數
 
@@ -94,5 +95,5 @@ module.exports = {
 }
 ```
 
-最後cd進入程式目錄/opt/html/bibian_new_bar，輸入指令npm run watch就能進行開發。開發完畢後，指令輸入npm run build就能產生編譯js在dist中
+最後進入程式目錄/opt/html/bibian\_new\_bar，輸入指令npm run watch就能進行開發。開發完畢後，指令輸入npm run build就能產生編譯js在dist中
 
